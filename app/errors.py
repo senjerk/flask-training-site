@@ -4,21 +4,19 @@ import logging
 from logging.handlers import SMTPHandler
 
 if not app.debug:
-    print('1')
     if app.config['MAIL_SERVER']:
-        print(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
-        print(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
         auth = None
         if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
-            print('3')
             auth = (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
-            print(auth)
         secure = None
         if app.config['MAIL_USE_TLS']:
             secure = ()
+            print(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            print(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+            print(auth)
         mail_handler = SMTPHandler(
             mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
-            fromaddr='no-reply@' + app.config['MAIL_SERVER'],
+            fromaddr=app.config['MAIL_USERNAME'],
             toaddrs=app.config['ADMINS'], subject='Microblog Failure',
             credentials=auth, secure=secure)
         mail_handler.setLevel(logging.ERROR)
