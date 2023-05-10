@@ -6,3 +6,4 @@
 /migrations/versions/__pycache__/
 /.idea/
 config.py
+/logs/
