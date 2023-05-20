@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 
 app = Flask(__name__, template_folder='templates')
@@ -16,6 +17,7 @@ login.login_view = 'login'
 login.login_message = 'Please, log in to see this page.'
 mail = Mail(app)
 bootstrap = Bootstrap(app)
+moment = Moment(app)
 
 # app.app_context().push()
 
